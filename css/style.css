@@ -19,7 +19,7 @@ body
     font-family: 'Baloo Da 2', Arial, Helvetica, sans-serif;  
 }
 
-h1, h2, h3
+h1, h2, h3, h4
 {
     font-family: var(--font-titres);
     font-weight: bold;
@@ -41,6 +41,11 @@ h2
 h3
 {
     margin-bottom: 1rem;
+}
+
+h4
+{
+    color: var(--color-blanc);
 }
 
 
@@ -76,9 +81,11 @@ h3
 	margin-bottom: 0.5rem;
 }
 
-.navbar-custom .nav-item .nav-link {
-	padding: 0.6rem 0.7rem 0.6rem 0.7rem;
-	color: var(--color-blanc);
+.navbar-custom .nav-item .nav-link 
+{
+    color: var(--color-blanc);
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 	text-decoration: none;
 	transition: all 0.2s ease;
 }
@@ -86,11 +93,6 @@ h3
 .navbar-custom .nav-item .nav-link:hover,
 .navbar-custom .nav-item .nav-link.active {
 	color: var(--color-turquoise);
-}
-
-.nav-link.btn-solid-lg
-{
-    margin-left: 40px;
 }
 
 .navbar-custom .navbar-toggler {
@@ -170,7 +172,7 @@ h3
 #informations img
 {
     padding-bottom: 2rem;
-    width: 100%;
+
 }
 
 #informations i
@@ -210,14 +212,69 @@ h3
 #footer
 {
     background-color: var(--color-bleu-fonce);
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+}
+
+#footer img
+{
+    width: 30%;
+}
+
+#footer .p-md
+{
+    color: var(--color-blanc);
+}
+
+#footer i
+{
+    background-color: var(--color-turquoise);
+    border: 3px solid var(--color-turquoise);
+    border-radius: 50px;
+    color: var(--color-blanc);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+}
+
+#footer i:hover
+{
+    background-color: var(--color-bleu-fonce);
+    color: var(--color-turquoise);
+}
+
+.copyright
+{
+    color: var(--color-turquoise);
+    font-size: 0.6rem;
+    padding-top: 2rem;
+    text-align: center;
+}
+
+@media (max-width: 992px) {
+    .text-container-contact
+    {
+        text-align: center;
+    }
+
+    #footer i
+    {
+        font-size: 1.5rem;
+    }
+
+    #footer img, #footer .photoCredit
+    {
+        display: none;
+    }
 }
 
 
 /*boutons*/
 
-.btn-solid-lg {
+.btn-solid-lg 
+{
 	display: inline-block;
-	padding: 1.375rem 2.625rem 1.375rem 2.625rem;
+	padding: 1.3rem 2.6rem;
 	border: 0.125rem solid var(--color-turquoise);
 	border-radius: 2rem;
 	background-color: var(--color-turquoise);
@@ -231,4 +288,17 @@ h3
 	background-color: transparent;
 	color: var(--color-turquoise);
 	text-decoration: none;
+}
+
+.nav-item .btn-solid-lg
+{
+    margin-left: 40px;  /*n'embarque pas????*/
+    padding: 1.3rem 2.6rem;
+}
+
+@media (max-width: 767px) {
+    .nav-item .btn-solid-lg
+    {
+        margin: 20px 0px 0px;
+    }
 }
