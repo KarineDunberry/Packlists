@@ -10,19 +10,21 @@ function choisirCategorie() {
   let clone = $("#creer-categorie-template").clone();
   $("#show-choix-categorie").append(clone);
   clone.show();
+
   $(".btn-close-categorie").click(fermerFenetre);
   $(".btn-creer-onglet").click(creerOngletCategorie);
 }
 
 function creerOngletCategorie() {
   let clone = $("#creer-onglet-template").clone();
+  let titre = $(this).parent().siblings(".titre").find(".input-nom").val(); 
+  let couleur = $(".btn-radio-couleur:checked").css("background-color");
   let champTitre = clone.find(".titre-categorie");
-  let titre = $(this).parent().siblings(".titre").find(".input-nom").val(); //titre ne fonctionne pas
-  console.log(titre);
-  let couleur = $(".btn-radio-couleur"); //trouver comment aller chercher la couleur
+  console.log(couleur);
+
+  clone.attr("id", "");                                  //validation: vous devez choisir couleur et titre 
   clone.css("background-color", couleur);
   champTitre.append(titre);
-
   $("#show-liste").append(clone);
   clone.show();
   $("#show-choix-categorie").empty();
@@ -32,6 +34,9 @@ function fermerFenetre() {
   console.log("allo");
   $("#show-choix-categorie").empty();
 }
+
+
+
 
 
 $(document).ready(function() {

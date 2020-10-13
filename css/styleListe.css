@@ -211,11 +211,12 @@ button:hover, button:focus
 }
 
 
-/*template catégorie*/
+/*template choix catégorie*/
 
 #creer-categorie-template
 {
   background-color: var(--color-blanc);
+  border: 5px solid var(--color-turquoise);
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
   position: absolute;
   left: 50%;
@@ -305,11 +306,6 @@ button:hover, button:focus
   background-color: #00C6B0;
 }
 
-#btn-radio-bleu-fonce
-{
-  background-color: #1D394B;
-}
-
 #btn-radio-menthe
 {
   background-color: #7FF9C1;
@@ -328,5 +324,19 @@ button:hover, button:focus
 .btn-creer-onglet
 {
   margin-top: 4rem;
+}
+
+/*template onglet catégorie*/
+
+.onglet-template
+{
+  border-radius: 1rem;
+  font-size: 1.3rem;
+  padding: 1rem;
+}
+
+.titre-categorie
+{
+  font-weight: bold;
 }
 

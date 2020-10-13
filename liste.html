@@ -23,10 +23,10 @@
             <a href="#" class="d-flex justify-content-end btn-close-categorie"><i class="fas fa-times"></i></a>
             <h3 class="text-center">Créer une catégorie</h3>
             <div class="titre pb-3 pt-3">
-                <label for="">Titre de la catégorie:</label>
-                <input type="text" class="input-nom">
+                <label for="" class="font-weight-bold pr-2">Titre de la catégorie:</label>
+                <input type="text" class="input-nom" autofocus>
             </div>
-            <div>Choisir une couleur:</div>
+            <div class="font-weight-bold">Choisir une couleur:</div>
             <div class="row">
                 <div class="col-12 d-flex justify-content-center align-items-center">
                     <input type="radio" id="btn-radio-vert" class="btn-radio-couleur" name="btn-radio-vert">
@@ -42,7 +42,6 @@
                     <input type="radio" id="btn-radio-gris" class="btn-radio-couleur" name="btn-radio-vert">
                     <input type="radio" id="btn-radio-kaki" class="btn-radio-couleur" name="btn-radio-vert">
                     <input type="radio" id="btn-radio-turquoise" class="btn-radio-couleur" name="btn-radio-vert">
-                    <input type="radio" id="btn-radio-bleu-fonce" class="btn-radio-couleur" name="btn-radio-vert">
                     <input type="radio" id="btn-radio-menthe" class="btn-radio-couleur" name="btn-radio-vert">
                     <input type="radio" id="btn-radio-saumon" class="btn-radio-couleur" name="btn-radio-vert">
                     <input type="radio" id="btn-radio-jaune-pale" class="btn-radio-couleur" name="btn-radio-vert">
@@ -56,9 +55,11 @@
     </div>
 
     <!--template pour créer un onglet catégorie-->
-    <div id="creer-onglet-template" class="row d-flex">
-        <div class="titre-categorie" class="flex-grow-1"></div>
-        <div><i class="fas fa-plus"></i></div>
+    <div class="container template onglet-template" id="creer-onglet-template">
+        <div class="row">
+            <div class="titre-categorie col-11"></div>
+            <div class="col-1"><i class="fas fa-plus"></i></div>
+        </div>
     </div>
 
     <div id="creer-item-template" class="template container"><!--position relative, pop up avec choix items, titre, nombre...-->
