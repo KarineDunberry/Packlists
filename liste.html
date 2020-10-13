@@ -1,11 +1,156 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
+        integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleListe.css">
+    <title>PackLists</title>
 </head>
+
 <body>
+
+<!--TEMPLATES-->
+    <!--template pour choix de catégorie-->
+    <div id="creer-categorie-template" class="template container"><!--position relative, pop up avec choix catégories-->
+        <div class="flex-column">
+            <a href="#" class="d-flex justify-content-end btn-close-categorie"><i class="fas fa-times"></i></a>
+            <h3 class="text-center">Créer une catégorie</h3>
+            <div class="titre pb-3 pt-3">
+                <label for="">Titre de la catégorie:</label>
+                <input type="text" class="input-nom">
+            </div>
+            <div>Choisir une couleur:</div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <input type="radio" id="btn-radio-vert" class="btn-radio-couleur" name="btn-radio-vert">
+                    <input type="radio" id="btn-radio-bleu" class="btn-radio-couleur" name="btn-radio-vert">
+                    <input type="radio" id="btn-radio-violet" class="btn-radio-couleur" name="btn-radio-vert">
+                    <input type="radio" id="btn-radio-rose" class="btn-radio-couleur" name="btn-radio-vert">
+                    <input type="radio" id="btn-radio-jaune" class="btn-radio-couleur" name="btn-radio-vert">
+                    <input type="radio" id="btn-radio-orange" class="btn-radio-couleur" name="btn-radio-vert">
+                    <input type="radio" id="btn-radio-blanc" class="btn-radio-couleur" name="btn-radio-vert">
+                    <input type="radio" id="btn-radio-lila" class="btn-radio-couleur" name="btn-radio-vert">
+                </div>
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <input type="radio" id="btn-radio-gris" class="btn-radio-couleur" name="btn-radio-vert">
+                    <input type="radio" id="btn-radio-kaki" class="btn-radio-couleur" name="btn-radio-vert">
+                    <input type="radio" id="btn-radio-turquoise" class="btn-radio-couleur" name="btn-radio-vert">
+                    <input type="radio" id="btn-radio-bleu-fonce" class="btn-radio-couleur" name="btn-radio-vert">
+                    <input type="radio" id="btn-radio-menthe" class="btn-radio-couleur" name="btn-radio-vert">
+                    <input type="radio" id="btn-radio-saumon" class="btn-radio-couleur" name="btn-radio-vert">
+                    <input type="radio" id="btn-radio-jaune-pale" class="btn-radio-couleur" name="btn-radio-vert">
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <a class="nav-link btn-solid-lg btn-ajout-categorie btn-creer-onglet" href="#">CRÉER</a>
+            </div>
+            <!--icones à venir-->
+        </div>
+    </div>
+
+    <!--template pour créer un onglet catégorie-->
+    <div id="creer-onglet-template" class="row d-flex">
+        <div class="titre-categorie" class="flex-grow-1"></div>
+        <div><i class="fas fa-plus"></i></div>
+    </div>
+
+    <div id="creer-item-template" class="template container"><!--position relative, pop up avec choix items, titre, nombre...-->
+        <div>
+
+        </div>
+    </div>
+
+<!--PAGE VISIBLE-->
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="p-4 pt-5">
+                <a href="#" ><img class="img-fluid" src="images/girl-with-backpack-going-for-trekking.png" alt="illustration dame qui marche avec des bâtons de marche"></a>
+                <div class="photoCredit text-center">
+                    <a href="https://iconscout.com/illustrations/girl" target="_blank">Girl with backpack going for trekking Illustration</a> by 
+                    <a href="https://iconscout.com/contributors/delesign">Delesign Graphics</a> on 
+                    <a href="https://iconscout.com">Iconscout</a>
+                </div>
+                <ul class="list-unstyled components mb-5"> <!--classe list-unstyled bootstrap-->
+                    <li class="active">
+                        <a href="#">Accueil</a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn-ajout-categorie">Créer une catégorie</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+
+                <div class="footer">
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+                        is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                            target="_blank">Colorlib.com</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Toggle Menu</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+                        <a class="nav-link btn-solid-lg btn-ajout-categorie" href="#">CRÉER UNE CATÉGORIE</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="container">
+                <div class="flex-column">
+                    <h2 class="mb-4 titre-voyage">Voyage</h2>
+                    <div id="show-liste"></div>
+                    <div id="show-choix-categorie"></div>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+
     
+
 </body>
+
 </html>

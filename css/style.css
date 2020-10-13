@@ -15,8 +15,9 @@ body
     --font-logo: "Rancho", sans-serif;
     --font-base: 'Raleway', sans-serif;
     --font-titres: 'Arvo', serif;
-    background-color: var(--color-bleu-pale);
-    font-family: 'Baloo Da 2', Arial, Helvetica, sans-serif;  
+    background-color: var(--color-bleu-pale); 
+    font-family: var(--font-base);
+    position: relative;
 }
 
 h1, h2, h3, h4
@@ -293,7 +294,6 @@ h4
 .nav-item .btn-solid-lg
 {
     margin-left: 40px;  /*n'embarque pas????*/
-    padding: 1.3rem 2.6rem;
 }
 
 @media (max-width: 767px) {

@@ -1,0 +1,332 @@
+/*Général*/
+
+a 
+{
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease;
+  color: var(--color-turquoise); 
+}
+
+a:hover, a:focus 
+{
+  text-decoration: none !important;
+  outline: none !important;
+  -webkit-box-shadow: none;
+  box-shadow: none; 
+}
+
+
+/*navbar*/
+
+.navbar 
+{
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); 
+  }
+  
+.navbar-btn 
+{
+  box-shadow: none;
+  outline: none !important;
+  border: none; 
+}
+
+.line 
+{
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px dashed #ddd;
+  margin: 40px 0; 
+}
+
+
+/*sidebar*/
+
+.wrapper 
+{
+  width: 100%; 
+}
+
+#sidebar 
+{
+  min-width: 250px;
+  max-width: 300px;
+  background: var(--color-bleu-fonce);
+  color: var(--color-blanc);
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s; 
+}
+
+#sidebar.active 
+{
+  margin-left: -300px; 
+}
+
+#sidebar .logo span 
+{
+  display: block; 
+}
+
+#sidebar ul.components 
+{
+  padding: 0; 
+  margin-top: 2rem;
+}
+
+#sidebar ul li 
+{
+  font-size: 16px; 
+}
+
+#sidebar ul li > ul 
+{
+  margin-left: 10px; 
+}
+
+#sidebar ul li > ul li 
+{
+  font-size: 14px; 
+}
+
+#sidebar ul li a 
+{
+  padding: 10px 0;
+  display: block;
+  color: var(--color-blanc);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+#sidebar ul li a:hover 
+{
+  color: var(--color-jaune); 
+}
+
+#sidebar ul li.active > a 
+{
+  background: transparent;
+  color: var(--color-jaune); 
+}
+
+a[data-toggle="collapse"] 
+{
+  position: relative; 
+}
+
+.dropdown-toggle::after /*enlever si je ne veux pas petite flèche à côté dropdown*/
+{
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%); 
+}
+
+.photoCredit
+{
+  font-size: 0.5rem;
+}
+
+@media (max-width: 992px)
+{
+  #sidebarCollapse span 
+  {
+    display: none; 
+  } 
+
+  #sidebar 
+  {
+    margin-left: -300px; 
+  }
+
+  #sidebar.active 
+  {
+    margin-left: 0; 
+  }
+}
+
+/*contenu*/
+
+#content 
+{
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  min-height: 100vh;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s; 
+}
+
+/*boutons*/
+
+.btn.btn-primary 
+{
+  background: var(--color-jaune);
+  border-color: var(--color-jaune); 
+}
+
+.btn.btn-primary:hover, .btn.btn-primary:focus 
+{
+  background: var(--color-jaune) !important;
+  border-color: var(--color-jaune) !important; 
+}
+
+button 
+{
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease; 
+}
+
+button:hover, button:focus 
+{
+  text-decoration: none !important;
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important; 
+}
+
+/*footer*/
+
+.footer p 
+{
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.5rem; 
+}
+
+/*TEMPLATES*/
+
+.template
+{
+  display: none;
+}
+
+
+/*template catégorie*/
+
+#creer-categorie-template
+{
+  background-color: var(--color-blanc);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 60vh;
+  padding: 30px;
+  width: 75vh;
+  z-index: 1000;
+}
+
+.btn-radio-couleur
+{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid black;
+  border-radius: 50%;
+  height: 20px;
+  margin: 10px;
+  width: 20px;
+}
+
+.btn-radio-couleur:checked
+{
+  border: 4px solid black;
+  outline: none;
+}
+
+.btn-radio-couleur:focus
+{
+  outline: none;
+}
+
+#btn-radio-vert
+{
+  background-color: #BDFF9F;
+}
+
+#btn-radio-bleu
+{
+  background-color: #A8F3FF;
+}
+
+#btn-radio-violet
+{
+  background-color: #A88B9C;
+}
+
+#btn-radio-rose
+{
+  background-color: #F2A3AF;
+}
+
+#btn-radio-jaune
+{
+  background-color: #F9F871;
+}
+
+#btn-radio-orange
+{
+  background-color: #EB9A28;
+}
+
+#btn-radio-blanc
+{
+  background-color: #fff;
+}
+
+#btn-radio-lila
+{
+  background-color: #f29afa;
+}
+
+#btn-radio-gris
+{
+  background-color: #9BAEBC;
+}
+
+#btn-radio-kaki
+{
+  background-color: #A4C58B;
+}
+
+#btn-radio-turquoise
+{
+  background-color: #00C6B0;
+}
+
+#btn-radio-bleu-fonce
+{
+  background-color: #1D394B;
+}
+
+#btn-radio-menthe
+{
+  background-color: #7FF9C1;
+}
+
+#btn-radio-saumon
+{
+  background-color: #FFB5AF;
+}
+
+#btn-radio-jaune-pale
+{
+  background-color: #FCFCD4;
+}
+
+.btn-creer-onglet
+{
+  margin-top: 4rem;
+}
+
