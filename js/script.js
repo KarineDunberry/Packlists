@@ -36,16 +36,11 @@ function creerOngletCategorie() {
   let champTitre = clone.find(".titre-categorie");
 
   if ((titre == "") || (couleur == undefined)) {
-    let clonePopup = $(".popup__validation").clone();
-
-    clonePopup.attr("id", ""); 
-    clonePopup.find(".popup_titre").text("Veuillez svp choisir un titre et une couleur.");
-    $(".creer__categorie_validation").append(clonePopup);
-    clonePopup.show();
-
-    $(".btn__close_popup").click(fermerPopup);
+    $(this).popover("show");
+    $(this).popover("disable");
 
   } else {
+    $(this).popover("hide");
     clone.attr("id", "");                       
     clone.css("background-color", couleur);
     champTitre.append(titre);
@@ -63,34 +58,55 @@ function creerOngletItem() {
   let champTitre = clone.find(".item__titre");
 
   if (titre == "") {
-    let clonePopup = $(".popup__validation").clone();
-
-    clonePopup.attr("id", ""); 
-    clonePopup.find(".popup_titre").text("Veuillez svp choisir un titre.");
-    $(".creer__item_validation").append(clonePopup);
-    clonePopup.show();
-
-    $(".btn__close_popup").click(fermerPopup);
+    $(this).popover("show");
+    $(this).popover("disable");
 
   } else {
+    $(this).popover("hide");
     clone.attr("id", "");                       
     champTitre.append(titre);
-    $("#show-liste").append(clone);
+    $("#show-liste").append(clone); //verifier texte popover
     clone.show();
     $("#show-choix").empty();
   }
 
-//click des boutons
+  $(".item__icone_supprimer").click(supprimerItem);
+  $(".item__icone_modifier").click(modifierItem);
+}
+
+function enregistrerItem() {
+  let nouveauTitre = $(this).parent().siblings(".titre").children(".item__input_nom").val();
+  let itemAModifier = $("#target");
+
+  itemAModifier.find(".item__titre").text(nouveauTitre);
+  $("#show-choix").empty();
+  itemAModifier.attr("id", "");
 }
 
 function fermerFenetreChoix() {
   $("#show-choix").empty();
 }
 
-function fermerPopup() {
-  $(".btn__close_popup").parent().css("display", "none");
+function modifierItem() {
+  let itemAModifier = $(this).parent().parent().parent();
+  let titreCourant = $(this).parent().siblings(".item__titre").text();
+  let clone = $("#creer__item_template").clone();
+  let input = clone.find(".item__input_nom");
+  itemAModifier.attr("id", "target");
+  
+  $("#show-choix").empty();
+  clone.find(".btn__ajout_item").text("Enregistrer");
+  input.val(titreCourant);
+  $("#show-choix").append(clone);
+  clone.show();
+
+  clone.find(".btn-close-item").click(fermerFenetreChoix);
+  $(".btn__ajout_item").click(enregistrerItem);
 }
 
+function supprimerItem() {
+  $(this).parents(".item__onglet").remove();
+}
 
 
 

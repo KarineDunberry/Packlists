@@ -48,18 +48,11 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-                <a class="nav-link btn-solid-lg btn-ajout-categorie btn-creer-onglet" href="#">CRÉER</a>
+                <a class="nav-link btn-solid-lg btn-creer-onglet" href="#" data-trigger="focus" data-toggle="popover" title="Attention" data-content="Veuillez choisir un titre et une couleur.">CRÉER</a>
             </div>
-            <div class="creer__categorie_validation container"></div>
-            <!--icones à venir-->
         </div>
     </div>
 
-    <!--template popup validation-->
-    <div class="popup__validation flex-column template">
-        <a href="#" class="d-flex justify-content-end btn__close_popup"><i class="fas fa-times"></i></a>
-        <div class="popup_titre font-weight-bold pt-2"></div>
-    </div>
 
     <!--template pour créer un onglet catégorie-->
     <div class="container template onglet-template" id="creer-onglet-template">
@@ -67,6 +60,7 @@
             <div class="titre-categorie font-weight-bold col-11"></div>
             <a class="col-1 onglet__btn_item font-weight-bold" href="#"><i class="fas fa-plus"></i></a>
         </div>
+        <div class="onglet__show_item"></div>
     </div>
 
     <!--template pour choisir item-->
@@ -81,18 +75,17 @@
             <div class="d-flex justify-content-center">
                 <a class="nav-link btn-solid-lg btn__ajout_item" href="#">CRÉER</a>
             </div>
-            <div class="creer__item_validation container"></div>
         </div>
     </div>
 
-    <!--template pour créer un item-->
+    <!--template pour créer onglet item-->
     <div class="container item__onglet template px-5 list-group-item" id="item__creer_template">
         <div class="row align-items-center">
             <input type="checkbox" class="my-1">
-            <div class="item__titre flex-grow-1 px-4">Chandail</div>
+            <div class="item__titre flex-grow-1 px-4"></div>
             <div class="">
-                <a href="#" class="item__icone pr-3"><i class="fas fa-pencil-alt"></i></a> <!--modifier-->
-                <a href="#" class="item__icone"><i class="fas fa-times"></i></a> <!--supprimer-->
+                <a href="#" class="item__icone item__icone_modifier pr-3"><i class="fas fa-pencil-alt"></i></a> <!--modifier-->
+                <a href="#" class="item__icone item__icone_supprimer"><i class="fas fa-times"></i></a> <!--supprimer-->
             </div>
         </div>
     </div>
@@ -108,7 +101,7 @@
                     <a href="https://iconscout.com/contributors/delesign">Delesign Graphics</a> on 
                     <a href="https://iconscout.com">Iconscout</a>
                 </div>
-                <ul class="list-unstyled components mb-5"> <!--classe list-unstyled bootstrap-->
+                <ul class="list-unstyled components mb-5">
                     <li class="active">
                         <a href="index.html">Accueil</a>
                     </li>

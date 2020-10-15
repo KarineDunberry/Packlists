@@ -230,8 +230,6 @@ button:hover, button:focus
 
 .btn-radio-couleur
 {
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   border: 1px solid black;
   border-radius: 50%;
@@ -348,6 +346,7 @@ button:hover, button:focus
 .onglet-template
 {
   border-radius: 1rem;
+  border: 2px solid var(--color-blanc);
   font-size: 1.3rem;
   padding: 1rem;
 }
@@ -386,9 +385,26 @@ button:hover, button:focus
 
 /*template onglet item*/
 
+.item__onglet
+{
+  background-color: transparent;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+
 .item__icone
 {
+  color: var(--color-bleu-fonce);
   font-size: 1.3rem;
 }
+
+.item__icone:hover
+{
+  color: var(--color-turquoise);
+}
+
+
+
 
 
