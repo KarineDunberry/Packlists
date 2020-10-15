@@ -343,7 +343,8 @@ button:hover, button:focus
 
 /*template onglet catégorie*/
 
-.onglet-template
+
+.onglet__cadre_categorie
 {
   border-radius: 1rem;
   border: 2px solid var(--color-blanc);
@@ -351,14 +352,19 @@ button:hover, button:focus
   padding: 1rem;
 }
 
-.onglet__btn_item
+.categorie__icone
 {
   color: black;
 }
 
-.onglet__btn_item:hover
+.categorie__icone:hover
 {
   color: var(--color-turquoise);
+}
+
+.onglet__icone
+{
+  padding: 0rem 1rem;
 }
 
 /*template choisir item*/
@@ -403,6 +409,12 @@ button:hover, button:focus
 {
   color: var(--color-turquoise);
 }
+
+.item__checkbox:checked + .item__titre
+{
+  text-decoration: line-through var(--color-turquoise);
+}
+
 
 
 
