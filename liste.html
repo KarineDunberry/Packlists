@@ -18,13 +18,13 @@
 
 <!--TEMPLATES-->
     <!--template pour choix de catégorie-->
-    <div id="creer-categorie-template" class="template container"><!--position relative, pop up avec choix catégories-->
+    <div id="creer-categorie-template" class="template container">
         <div class="flex-column">
             <a href="#" class="d-flex justify-content-end btn-close-categorie"><i class="fas fa-times"></i></a>
             <h3 class="text-center">Créer une catégorie</h3>
             <div class="titre pb-3 pt-3">
                 <label for="" class="font-weight-bold pr-2">Titre de la catégorie:</label>
-                <input type="text" class="input-nom" autofocus>
+                <input type="text" class="input-nom">
             </div>
             <div class="font-weight-bold">Choisir une couleur:</div>
             <div class="row">
@@ -50,23 +50,53 @@
             <div class="d-flex justify-content-center">
                 <a class="nav-link btn-solid-lg btn-ajout-categorie btn-creer-onglet" href="#">CRÉER</a>
             </div>
+            <div class="creer__categorie_validation container"></div>
             <!--icones à venir-->
         </div>
+    </div>
+
+    <!--template popup validation-->
+    <div class="popup__validation flex-column template">
+        <a href="#" class="d-flex justify-content-end btn__close_popup"><i class="fas fa-times"></i></a>
+        <div class="popup_titre font-weight-bold pt-2"></div>
     </div>
 
     <!--template pour créer un onglet catégorie-->
     <div class="container template onglet-template" id="creer-onglet-template">
         <div class="row">
-            <div class="titre-categorie col-11"></div>
-            <div class="col-1"><i class="fas fa-plus"></i></div>
+            <div class="titre-categorie font-weight-bold col-11"></div>
+            <a class="col-1 onglet__btn_item font-weight-bold" href="#"><i class="fas fa-plus"></i></a>
         </div>
     </div>
 
-    <div id="creer-item-template" class="template container"><!--position relative, pop up avec choix items, titre, nombre...-->
-        <div>
-
+    <!--template pour choisir item-->
+    <div id="creer__item_template" class="template container">
+        <div class="flex-column">
+            <a href="#" class="d-flex justify-content-end btn-close-item"><i class="fas fa-times"></i></a>
+            <h3 class="text-center">Créer un item</h3>
+            <div class="titre pb-3 pt-3">
+                <label for="" class="font-weight-bold pr-2">Nom de l'item:</label>
+                <input type="text" class="item__input_nom">
+            </div>
+            <div class="d-flex justify-content-center">
+                <a class="nav-link btn-solid-lg btn__ajout_item" href="#">CRÉER</a>
+            </div>
+            <div class="creer__item_validation container"></div>
         </div>
     </div>
+
+    <!--template pour créer un item-->
+    <div class="container item__onglet template px-5 list-group-item" id="item__creer_template">
+        <div class="row align-items-center">
+            <input type="checkbox" class="my-1">
+            <div class="item__titre flex-grow-1 px-4">Chandail</div>
+            <div class="">
+                <a href="#" class="item__icone pr-3"><i class="fas fa-pencil-alt"></i></a> <!--modifier-->
+                <a href="#" class="item__icone"><i class="fas fa-times"></i></a> <!--supprimer-->
+            </div>
+        </div>
+    </div>
+    
 
 <!--PAGE VISIBLE-->
     <div class="wrapper d-flex align-items-stretch">
@@ -80,13 +110,13 @@
                 </div>
                 <ul class="list-unstyled components mb-5"> <!--classe list-unstyled bootstrap-->
                     <li class="active">
-                        <a href="#">Accueil</a>
+                        <a href="index.html">Accueil</a>
                     </li>
                     <li>
                         <a href="#" class="btn-ajout-categorie">Créer une catégorie</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="index.html#footer">Contact</a>
                     </li>
                 </ul>
 
@@ -129,7 +159,7 @@
                 <div class="flex-column">
                     <h2 class="mb-4 titre-voyage">Voyage</h2>
                     <div id="show-liste"></div>
-                    <div id="show-choix-categorie"></div>
+                    <div id="show-choix"></div>
                 </div>
             </div>
           
