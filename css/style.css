@@ -268,7 +268,7 @@ h4
 .btn-solid-lg 
 {
 	display: inline-block;
-	padding: 1.3rem 2.6rem;
+	padding: 1.3rem 2.6rem !important;
 	border: 0.125rem solid var(--color-turquoise);
 	border-radius: 2rem;
 	background-color: var(--color-turquoise);
@@ -282,11 +282,6 @@ h4
 	background-color: transparent;
 	color: var(--color-turquoise);
 	text-decoration: none;
-}
-
-.nav-item .btn-solid-lg
-{
-    margin-left: 40px;  /*n'embarque pas????*/
 }
 
 @media (max-width: 767px) {

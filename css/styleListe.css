@@ -164,7 +164,7 @@ a[data-toggle="collapse"]
 #content 
 {
   width: 100%;
-  overflow: visible;
+  overflow: hidden;
   padding: 0;
   min-height: 100vh;
   -webkit-transition: all 0.3s;
@@ -199,6 +199,11 @@ button:hover, button:focus
   outline: none !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important; 
+}
+
+.btn-ajout-categorie-plus
+{
+  display: none;
 }
 
 /*footer*/
@@ -356,6 +361,7 @@ button:hover, button:focus
 {
   border-radius: 1rem;
   border: 2px solid var(--color-blanc);
+  flex-wrap: nowrap;
   font-size: 1.3rem;
   padding: 1rem;
 }
@@ -427,9 +433,16 @@ button:hover, button:focus
 /*media queries*/
 
 @media (max-width: 635px) {
-  .btn-ajout-categorie
+  .btn-ajout-categorie-text
   {
     display: none;
+  }
+  .btn-ajout-categorie-plus
+  {
+    display: inline;
+    font-size: 2rem;
+    margin-top: 0.2rem;
+    padding: 0.9rem 0.8rem;
   }
 }
 

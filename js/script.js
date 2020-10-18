@@ -14,8 +14,15 @@ function choisirCategorie() {
   clone.show();
   input.focus();
 
+  /*clone.keypress(function(event){
+    var keycode = (event.keyCode ? event.keyCode : event.which);  //fonctionne mais ne trouve pas le titre étant donné que this n'est pas la même chose...
+    if(keycode == '13'){
+         creerOngletCategorie();  //passer variable titre???
+    }
+  });*/
   clone.find(".btn-close-categorie").click(fermerFenetreChoix);
   $(".btn-creer-onglet").click(creerOngletCategorie);
+  
 }
 
 function choisirItem() {
@@ -172,6 +179,7 @@ $(document).ready(function() {
   });
 
   $(".btn-ajout-categorie").click(choisirCategorie);
+  
 
   $("#sidebar a").click(function() {
     $("#sidebar").toggleClass("active");
@@ -181,11 +189,8 @@ $(document).ready(function() {
     $('.navbar-toggler').addClass('collapsed');
     $('.navbar-toggler').attr('aria-expanded', false);
     $('.navbar-collapse').removeClass('show');
-  })
-
   
-
- 
+  })
 
 
 });
