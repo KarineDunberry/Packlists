@@ -12,6 +12,7 @@ function choisirCategorie() {
   $("#show-choix").empty();
   $("#show-choix").append(clone);
   clone.show();
+  input.focus();
 
   clone.find(".btn-close-categorie").click(fermerFenetreChoix);
   $(".btn-creer-onglet").click(creerOngletCategorie);
@@ -25,6 +26,7 @@ function choisirItem() {
   $("#show-choix").empty();
   $("#show-choix").append(clone);
   clone.show();
+  input.focus();
 
   clone.find(".btn-close-item").click(fermerFenetreChoix);
   creerOngletItem(IDcategorie);
@@ -170,6 +172,16 @@ $(document).ready(function() {
   });
 
   $(".btn-ajout-categorie").click(choisirCategorie);
+
+  $("#sidebar a").click(function() {
+    $("#sidebar").toggleClass("active");
+  })
+
+  $(".navbar .nav-item").click(function() {
+    $('.navbar-toggler').addClass('collapsed');
+    $('.navbar-toggler').attr('aria-expanded', false);
+    $('.navbar-collapse').removeClass('show');
+  })
 
   
 

@@ -11,6 +11,7 @@
         integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styleListe.css">
+    <link rel="icon" type="image/gif/png" href="images/favicon.ico"> <!--ajout de l'icone dans le title-->
     <title>PackLists</title>
 </head>
 
@@ -24,7 +25,7 @@
             <h3 class="text-center">Créer une catégorie</h3>
             <div class="titre pb-3 pt-3">
                 <label for="" class="font-weight-bold pr-2">Titre de la catégorie:</label>
-                <input type="text" class="input-nom">
+                <input type="text" class="input-nom" placeholder="Nom de la catégorie">
             </div>
             <div class="font-weight-bold">Choisir une couleur:</div>
             <div class="row">
@@ -73,7 +74,7 @@
             <h3 class="text-center">Créer un item</h3>
             <div class="titre pb-3 pt-3">
                 <label for="" class="font-weight-bold pr-2">Nom de l'item:</label>
-                <input type="text" class="item__input_nom">
+                <input type="text" class="item__input_nom" placeholder="Nom de l'item">
             </div>
             <div class="d-flex justify-content-center">
                 <a class="nav-link btn-solid-lg btn__ajout_item" href="#" data-trigger="focus" data-toggle="popover" title="Attention!" data-content="Veuillez choisir un titre.">CRÉER</a>
@@ -97,6 +98,7 @@
 <!--PAGE VISIBLE-->
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar">
+            <a class="navbar-brand logo-text page-scroll" href="index.html"><i class="fas fa-suitcase-rolling iconeLogo"></i>Packlists</a>
             <div class="p-4 pt-5">
                 <a href="#" ><img class="img-fluid" src="images/girl-with-backpack-going-for-trekking.png" alt="illustration dame qui marche avec des bâtons de marche"></a>
                 <div class="photoCredit text-center">
@@ -140,18 +142,11 @@
                         <i class="fa fa-bars"></i>
                         <span class="sr-only">Toggle Menu</span>
                     </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa fa-bars"></i>
-                    </button>
+                    <a class="nav-link btn-solid-lg btn-ajout-categorie" href="#">CRÉER UNE CATÉGORIE</a>
 
-                    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
-                        <a class="nav-link btn-solid-lg btn-ajout-categorie" href="#">CRÉER UNE CATÉGORIE</a>
-                    </div>
                 </div>
             </nav>
-            <div class="container">
+            <div class="container liste">
                 <div class="flex-column">
                     <h2 class="mb-4 titre-voyage">Voyage</h2>
                     <div id="show-liste"></div>

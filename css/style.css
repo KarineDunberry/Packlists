@@ -71,7 +71,7 @@ h4
 	height: 2rem;
 }
 
-.navbar-custom .navbar-brand.logo-text {
+.navbar-brand.logo-text {
 	font: 2rem/1.5rem var(--font-logo); 
 	color: var(--color-blanc);
 	text-decoration: none;
@@ -103,21 +103,14 @@ h4
     outline: none;
 }
 
-.navbar-custom button[aria-expanded='false'] .navbar-toggler-awesome.fas.fa-times{
-	display: none;
-}
+
 
 .navbar-custom button[aria-expanded='false'] .navbar-toggler-awesome.fas.fa-bars{
 	display: inline-block;
 }
 
 .navbar-custom button[aria-expanded='true'] .navbar-toggler-awesome.fas.fa-bars{
-	display: none;
-}
-
-.navbar-custom button[aria-expanded='true'] .navbar-toggler-awesome.fas.fa-times{
 	display: inline-block;
-	margin-right: 0.125rem;
 }
 
 .iconeLogo
