@@ -125,17 +125,6 @@ a[data-toggle="collapse"]
   position: relative; 
 }
 
-.dropdown-toggle::after /*enlever si je ne veux pas petite flèche à côté dropdown*/
-{
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%); 
-}
-
 .photoCredit
 {
   font-size: 0.5rem;

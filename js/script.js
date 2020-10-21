@@ -38,6 +38,10 @@ function choisirItem() {
   clone.find(".btn-close-item").click(fermerFenetreChoix);
   creerOngletItem(IDcategorie);
 }
+/*
+function creerListe() {
+  let listes = window.localStorage.getItem("listes");
+}*/
 
 function creerOngletCategorie() {
   let clone = $("#creer-onglet-template").clone();
@@ -57,11 +61,21 @@ function creerOngletCategorie() {
     $("#show-liste").append(clone);
     clone.show();
     $("#show-choix").empty();
+  
+
+    /*let list = {
+      "categorie" : titre,
+      "couleur" : couleur,       
+      "items" : []
+    }
+
+    stockerListes(list);*/
   }
 
   clone.find(".categorie__icone_item").click(choisirItem);
   clone.find(".categorie__icone_supprimer").click(supprimerCategorie);
   clone.find(".categorie__icone_modifier").click(modifierCategorie);
+  clone.find(".categorie__icone_dropdown").click(montrerCacherItems);
 }
 
 function creerOngletItem(IDcategorie) {
@@ -79,9 +93,12 @@ function creerOngletItem(IDcategorie) {
       $(this).popover("hide");
       clone.attr("id", "");                       
       champTitre.append(titre);
-      categorie.find(".onglet__show_item").append(clone); //verifier texte popover
+      categorie.find(".onglet__show_item").append(clone);
       clone.show();
       $("#show-choix").empty();
+
+
+     /* stockerListes(list);*/
     }
 
     $(".item__icone_supprimer").click(supprimerItem);
@@ -151,6 +168,16 @@ function modifierItem() {
   $(".btn__ajout_item").click(enregistrerItem);
 }
 
+function montrerCacherItems() {
+  let itemContainer = $(this).parent().siblings(".onglet__show_item");
+
+  if (itemContainer.css("display") == "none") {
+    itemContainer.show();
+  } else {
+    itemContainer.hide();
+  } 
+}
+
 function supprimerCategorie() {
   $(this).parent().parent().remove();
 }
@@ -159,7 +186,12 @@ function supprimerItem() {
   $(this).parents(".item__onglet").remove();
 }
 
-
+function stockerListes(list) {   /*********/
+  const memoire = window.localStorage;
+  let currentLists = memoire.getItem("listes") || []; 
+  let updatedLists = currentLists.push(list);
+  memoire.setItem("listes", updatedLists); 
+}
 
 $(document).ready(function() {
   "use strict"; 
@@ -172,7 +204,51 @@ $(document).ready(function() {
     });
 
 	};
-	fullHeight();
+  fullHeight();
+
+  /*Obtenir Items*/
+
+  class Storage {
+    constructor(key) {
+        this.store = window.localStorage;
+        this.key = key;
+    }
+
+    clear() {
+        this.store.clear();
+    }
+
+    /**
+     * 
+     * @param {any} item Item to be stored 
+     */
+    stockItem(item) {
+      
+        const currentItems = JSON.parse(this.store.getItem(this.key)) || [];
+
+        const updatedItems = currentItems.concat(item);
+
+        this.store.setItem(this.key, JSON.stringify(updatedItems));
+    }
+    /**
+     * @returns Items currently stored
+     */
+    getItems() {
+        return this.store.getItem(this.key);
+    }
+  }
+
+  const myStore = new Storage("listes");
+
+  myStore.clear();
+
+
+  
+  /*Montrer les items automatiquement */
+  
+  $(".onglet__show_item").show();
+
+   //****/ Appeler une fonction créer liste avec ce paramètre.
 
 	$('#sidebarCollapse').on('click', function () {
     $('#sidebar').toggleClass('active');
