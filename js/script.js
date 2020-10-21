@@ -84,6 +84,7 @@ function creerOngletItem(IDcategorie) {
     let titre = $(this).parent().siblings(".titre").find(".item__input_nom").val(); 
     let champTitre = clone.find(".item__titre");
     let categorie = $("#" + IDcategorie);
+    let checkbox = clone.find(".item__checkbox").prop("checked");
 
     if (titre == "") {
       $(this).popover("show");
@@ -97,8 +98,12 @@ function creerOngletItem(IDcategorie) {
       clone.show();
       $("#show-choix").empty();
 
+      const item = {
+        "titre" : titre,
+        "checkbox" : checkbox
+      }
 
-     /* stockerListes(list);*/
+      stockItems(item);
     }
 
     $(".item__icone_supprimer").click(supprimerItem);
@@ -186,11 +191,12 @@ function supprimerItem() {
   $(this).parents(".item__onglet").remove();
 }
 
-function stockerListes(list) {   /*********/
-  const memoire = window.localStorage;
-  let currentLists = memoire.getItem("listes") || []; 
-  let updatedLists = currentLists.push(list);
-  memoire.setItem("listes", updatedLists); 
+function stockItems(item) {   /*********/
+  const storage = window.localStorage;
+  let currentItems = JSON.parse(storage.getItem("items")) || [];  
+  let updatedItems = currentItems.concat(item);
+  storage.clear();
+  storage.setItem("items", updatedItems); 
 }
 
 $(document).ready(function() {
@@ -208,39 +214,7 @@ $(document).ready(function() {
 
   /*Obtenir Items*/
 
-  class Storage {
-    constructor(key) {
-        this.store = window.localStorage;
-        this.key = key;
-    }
-
-    clear() {
-        this.store.clear();
-    }
-
-    /**
-     * 
-     * @param {any} item Item to be stored 
-     */
-    stockItem(item) {
-      
-        const currentItems = JSON.parse(this.store.getItem(this.key)) || [];
-
-        const updatedItems = currentItems.concat(item);
-
-        this.store.setItem(this.key, JSON.stringify(updatedItems));
-    }
-    /**
-     * @returns Items currently stored
-     */
-    getItems() {
-        return this.store.getItem(this.key);
-    }
-  }
-
-  const myStore = new Storage("listes");
-
-  myStore.clear();
+  const storage = window.localStorage;
 
 
   
