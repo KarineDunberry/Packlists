@@ -217,7 +217,7 @@ button:hover, button:focus
 {
   background-color: var(--color-blanc);
   border: 5px solid var(--color-turquoise);
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
   position: absolute;
   left: 50%;
   top: 50%;
@@ -350,8 +350,10 @@ button:hover, button:focus
 {
   border-radius: 1rem;
   border: 2px solid var(--color-blanc);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
   flex-wrap: nowrap;
   font-size: 1.3rem;
+  margin-top: 1rem;
   padding: 1rem;
 }
 
@@ -376,7 +378,7 @@ button:hover, button:focus
 {
   background-color: var(--color-blanc);
   border: 5px solid var(--color-turquoise);
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
   position: absolute;
   left: 50%;
   top: 50%;

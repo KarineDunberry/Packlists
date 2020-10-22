@@ -3,8 +3,51 @@
    Created: June 2019
    Description: Custom JS file
 */
+class Memoire {
+  constructor(key) {
+      this.store = window.localStorage;
+      this.key = key;
+  }
+
+  clear() {
+      this.store.clear();
+  }
+
+  addItemToCategory(category, item){
+    console.log("adding an item")
+    const currentLists = JSON.parse(this.store.getItem(this.key))
+
+    currentLists[category].push(item)
+
+    this.store.setItem(this.key,JSON.stringify(currentLists))
+
+    console.log("item added")
+  }
+  /*@param {string} categorie to be created
+   */
+  createCategorie(category) {
+    
+      const currentLists = JSON.parse(this.store.getItem(this.key)) || {}
+
+      currentLists[category] = []
+
+      this.store.setItem(this.key, JSON.stringify(currentLists));
+  }
+  /*
+   * @returns Items currently stored
+   */
+  getItems() {
+      return this.store.getItem(this.key);
+  }
+}
+
+const mesListes = new Memoire("listes");
+mesListes.clear();
 
 
+
+
+/*FUNCTIONS*/
 function choisirCategorie() {
   let clone = $("#creer-categorie-template").clone();
   let input = clone.find(".input-nom");
@@ -63,13 +106,12 @@ function creerOngletCategorie() {
     $("#show-choix").empty();
   
 
-    /*let list = {
-      "categorie" : titre,
-      "couleur" : couleur,       
-      "items" : []
+    let categorie = {
+      "titre" : titre,
+      "couleur" : couleur
     }
 
-    stockerListes(list);*/
+    mesListes.createCategorie(categorie);
   }
 
   clone.find(".categorie__icone_item").click(choisirItem);
@@ -84,6 +126,7 @@ function creerOngletItem(IDcategorie) {
     let titre = $(this).parent().siblings(".titre").find(".item__input_nom").val(); 
     let champTitre = clone.find(".item__titre");
     let categorie = $("#" + IDcategorie);
+    let couleurCategorie = categorie.find(".onglet__cadre_categorie").css("background-color");
     let checkbox = clone.find(".item__checkbox").prop("checked");
 
     if (titre == "") {
@@ -98,12 +141,17 @@ function creerOngletItem(IDcategorie) {
       clone.show();
       $("#show-choix").empty();
 
-      const item = {
+      let item = {
         "titre" : titre,
         "checkbox" : checkbox
       }
+      
+      let categorieItem = {
+        "titre" : IDcategorie,
+        "couleur" : couleurCategorie
+      }
 
-      stockItems(item);
+      mesListes.addItemToCategory(categorieItem, item);
     }
 
     $(".item__icone_supprimer").click(supprimerItem);
@@ -175,12 +223,7 @@ function modifierItem() {
 
 function montrerCacherItems() {
   let itemContainer = $(this).parent().siblings(".onglet__show_item");
-
-  if (itemContainer.css("display") == "none") {
-    itemContainer.show();
-  } else {
-    itemContainer.hide();
-  } 
+  itemContainer.toggle();
 }
 
 function supprimerCategorie() {
@@ -191,15 +234,14 @@ function supprimerItem() {
   $(this).parents(".item__onglet").remove();
 }
 
-function stockItems(item) {   /*********/
+/*function stockItems(item) { 
   const storage = window.localStorage;
   
   let currentItems = JSON.parse(storage.getItem("items"[item])) || [];  
+  console.log(currentItems);
   let updatedItems = currentItems.concat(item);
-  storage.clear();
-  /*this.store.setItem(this.key, JSON.stringify(updatedItems))*/
   storage.setItem("items", JSON.stringify(updatedItems)); 
-}
+}*/
 
 $(document).ready(function() {
   "use strict"; 
@@ -214,17 +256,13 @@ $(document).ready(function() {
 	};
   fullHeight();
 
-  /*Obtenir Items*/
-
-  const storage = window.localStorage;
-
+  
+  mesListes.getItems();
 
   
   /*Montrer les items automatiquement */
   
   $(".onglet__show_item").show();
-
-   //****/ Appeler une fonction créer liste avec ce paramètre.
 
 	$('#sidebarCollapse').on('click', function () {
     $('#sidebar').toggleClass('active');
