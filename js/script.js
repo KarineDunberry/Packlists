@@ -193,10 +193,12 @@ function supprimerItem() {
 
 function stockItems(item) {   /*********/
   const storage = window.localStorage;
-  let currentItems = JSON.parse(storage.getItem("items")) || [];  
+  
+  let currentItems = JSON.parse(storage.getItem("items"[item])) || [];  
   let updatedItems = currentItems.concat(item);
   storage.clear();
-  storage.setItem("items", updatedItems); 
+  /*this.store.setItem(this.key, JSON.stringify(updatedItems))*/
+  storage.setItem("items", JSON.stringify(updatedItems)); 
 }
 
 $(document).ready(function() {
