@@ -1,5 +1,12 @@
 /*Général*/
 
+@media (max-width: 768px) {
+  body 
+  {
+    font-size: 14px;
+  }
+}
+
 a 
 {
   -webkit-transition: .3s all ease;
@@ -352,7 +359,7 @@ button:hover, button:focus
   border: 2px solid var(--color-blanc);
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
   flex-wrap: nowrap;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin-top: 1rem;
   padding: 1rem;
 }
@@ -369,7 +376,15 @@ button:hover, button:focus
 
 .onglet__icone
 {
-  padding: 0rem 1rem;
+  padding: 0rem 1rem 0rem 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .onglet__cadre_categorie
+  {
+    font-size: 1rem;
+    padding: 0.7rem;
+  }
 }
 
 /*template choisir item*/
@@ -402,12 +417,13 @@ button:hover, button:focus
   border-top: none;
   border-right: none;
   border-left: none;
+  flex-wrap: nowrap;
 }
 
 .item__icone
 {
   color: var(--color-bleu-fonce);
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 
 .item__icone:hover
@@ -418,6 +434,16 @@ button:hover, button:focus
 .item__checkbox:checked + .item__titre
 {
   text-decoration: line-through var(--color-turquoise);
+}
+
+@media (max-width: 768px) {
+  .item__onglet
+  {
+    font-size: 0.8rem;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+
 }
 
 

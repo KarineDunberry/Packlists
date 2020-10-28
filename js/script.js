@@ -14,24 +14,28 @@ class Memoire {
   }
 
   addItemToCategory(category, item){
-    console.log("adding an item")
+    const titre = category.titre
     const currentLists = JSON.parse(this.store.getItem(this.key))
 
-    currentLists[category].push(item)
+
+    currentLists[titre].items.push(item)
+
 
     this.store.setItem(this.key,JSON.stringify(currentLists))
 
-    console.log("item added")
   }
   /*@param {string} categorie to be created
    */
-  createCategorie(category) {
+  createCategorie(categorie) {
     
-      const currentLists = JSON.parse(this.store.getItem(this.key)) || {}
+    const couleur = categorie.couleur
+    const titre = categorie.titre
+    
+    const currentLists = JSON.parse(this.store.getItem(this.key)) || {}
 
-      currentLists[category] = []
+    currentLists[titre] = {couleur:couleur,items:[]}
 
-      this.store.setItem(this.key, JSON.stringify(currentLists));
+    this.store.setItem(this.key, JSON.stringify(currentLists));
   }
   /*
    * @returns Items currently stored
@@ -141,6 +145,7 @@ function creerOngletItem(IDcategorie) {
       clone.show();
       $("#show-choix").empty();
 
+      
       let item = {
         "titre" : titre,
         "checkbox" : checkbox
