@@ -43,7 +43,33 @@ class Memoire {
   getItems() {
       return this.store.getItem(this.key);
   }
+
+  /*@param {string} supprimer categorie*/
+  deleteCategorie(categorie) {
+    const currentLists = JSON.parse(this.store.getItem(this.key));
+
+    delete currentLists[categorie];
+
+    this.store.setItem(this.key, JSON.stringify(currentLists));
+  }
+
+  deleteItem(categorie, item) {
+    const currentLists = JSON.parse(this.store.getItem(this.key));
+
+    delete currentLists[categorie].items;  //à compléter pour trouver l'item
+
+    this.store.setItem(this.key, JSON.stringify(currentLists));
+  }
+
+  modifCategorie(categorieInitiale, categorieNew) {
+    const currentLists = JSON.parse(this.store.getItem(this.key));
+
+    currentLists[categorieInitiale] = categorieNew;     //pas testé
+
+    this.store.setItem(this.key, JSON.stringify(currentLists));
+  }
 }
+
 
 const mesListes = new Memoire("listes");
 mesListes.clear();
@@ -168,11 +194,15 @@ function enregistrerCategorie() {
   let nouveauTitre = $(this).parent().parent().find(".input-nom").val();
   let categorieAModifier = $("#target");
   let couleur = $(".btn-radio-couleur:checked").css("background-color");
+  let titreInitial = categorieAModifier.find(".titre-categorie").text();
+  console.log(titreInitial);
+
+  mesListes.modifCategorie(titreInitial, nouveauTitre);
 
   categorieAModifier.find(".onglet__cadre_categorie").css("background-color", couleur);
   categorieAModifier.find(".titre-categorie").text(nouveauTitre);
   $("#show-choix").empty();
-  categorieAModifier.attr("id", "");
+  categorieAModifier.attr("id", ""); 
 }
 
 function enregistrerItem() {
@@ -204,7 +234,7 @@ function modifierCategorie() {
   $("#show-choix").append(clone);
   clone.show();
 
-  clone.find("btn-close-categorie").click(fermerFenetreChoix);
+  clone.find("btn-close-categorie").click(fermerFenetreChoix);  //marche pas???
   $(".btn-creer-onglet").click(enregistrerCategorie);
 }
 
@@ -232,21 +262,22 @@ function montrerCacherItems() {
 }
 
 function supprimerCategorie() {
+  let titre = $(this).siblings(".titre-categorie").text();
   $(this).parent().parent().remove();
+
+
+  mesListes.deleteCategorie(titre);
 }
 
 function supprimerItem() {
+  let categorieTitre = $(this).parents(".onglet-template").attr("id");
+  let itemTitre = $(this).parents(".item__onglet").find(".item__titre").text();
+
   $(this).parents(".item__onglet").remove();
+
+  mesListes.deleteItem(categorieTitre, itemTitre);
 }
 
-/*function stockItems(item) { 
-  const storage = window.localStorage;
-  
-  let currentItems = JSON.parse(storage.getItem("items"[item])) || [];  
-  console.log(currentItems);
-  let updatedItems = currentItems.concat(item);
-  storage.setItem("items", JSON.stringify(updatedItems)); 
-}*/
 
 $(document).ready(function() {
   "use strict"; 
@@ -261,8 +292,7 @@ $(document).ready(function() {
 	};
   fullHeight();
 
-  
-  mesListes.getItems();
+
 
   
   /*Montrer les items automatiquement */
