@@ -3,7 +3,10 @@
    Created: June 2019
    Description: Custom JS file
 */
+const liste = {};
+
 class Memoire {
+
   constructor(key) {
       this.store = window.localStorage;
       this.key = key;
@@ -15,27 +18,17 @@ class Memoire {
 
   addItemToCategory(category, item){
     const titre = category.titre
-    const currentLists = JSON.parse(this.store.getItem(this.key))
 
 
-    currentLists[titre].items.push(item)
-
-
-    this.store.setItem(this.key,JSON.stringify(currentLists))
-
+    liste[titre].items.push(item)
   }
   /*@param {string} categorie to be created
    */
-  createCategorie(categorie) {
-    
+  createCategorie(categorie) { 
     const couleur = categorie.couleur
     const titre = categorie.titre
     
-    const currentLists = JSON.parse(this.store.getItem(this.key)) || {}
-
-    currentLists[titre] = {couleur:couleur,items:[]}
-
-    this.store.setItem(this.key, JSON.stringify(currentLists));
+    liste[titre] = {couleur:couleur,items:[]}
   }
   /*
    * @returns Items currently stored
@@ -46,27 +39,29 @@ class Memoire {
 
   /*@param {string} supprimer categorie*/
   deleteCategorie(categorie) {
-    const currentLists = JSON.parse(this.store.getItem(this.key));
-
-    delete currentLists[categorie];
-
-    this.store.setItem(this.key, JSON.stringify(currentLists));
+    delete liste[categorie];  //supprime toutes les catégories si ce n'est pas la dernière
   }
 
   deleteItem(categorie, item) {
-    const currentLists = JSON.parse(this.store.getItem(this.key));
-
-    delete currentLists[categorie].items;  //à compléter pour trouver l'item
-
-    this.store.setItem(this.key, JSON.stringify(currentLists));
+    let index = liste[categorie.titre].items.findIndex(x => x === item.titre); //ne trouve pas la catégorie précédente si on crée une autre catégorie après (seulement au delete)
+  
+    liste[categorie.titre].items.splice(index, 1); 
   }
 
   modifCategorie(categorieInitiale, categorieNew) {
-    const currentLists = JSON.parse(this.store.getItem(this.key));
 
-    currentLists[categorieInitiale] = categorieNew;     //pas testé
+    liste[categorieNew.titre] = liste[categorieInitiale.titre];
+    delete liste[categorieInitiale.titre];  
+    liste[categorieNew.titre] = {couleur:categorieNew.couleur, items:liste[categorieNew.titre].items};
+  }
 
-    this.store.setItem(this.key, JSON.stringify(currentLists));
+  modifItem(categorie, itemInitial, itemNew) {
+    this.deleteItem(categorie, itemInitial);
+    this.addItemToCategory(categorie, itemNew);
+  }
+
+  sauvegarde() {
+    this.store.setItem(this.key, JSON.stringify(liste));
   }
 }
 
@@ -142,6 +137,7 @@ function creerOngletCategorie() {
     }
 
     mesListes.createCategorie(categorie);
+    mesListes.sauvegarde();
   }
 
   clone.find(".categorie__icone_item").click(choisirItem);
@@ -183,6 +179,7 @@ function creerOngletItem(IDcategorie) {
       }
 
       mesListes.addItemToCategory(categorieItem, item);
+      mesListes.sauvegarde();
     }
 
     $(".item__icone_supprimer").click(supprimerItem);
@@ -193,25 +190,61 @@ function creerOngletItem(IDcategorie) {
 function enregistrerCategorie() {
   let nouveauTitre = $(this).parent().parent().find(".input-nom").val();
   let categorieAModifier = $("#target");
-  let couleur = $(".btn-radio-couleur:checked").css("background-color");
+  let couleurNew = $(".btn-radio-couleur:checked").css("background-color");
+  let couleurInitiale = categorieAModifier.find(".onglet__cadre_categorie").css("background-color");
   let titreInitial = categorieAModifier.find(".titre-categorie").text();
   console.log(titreInitial);
 
-  mesListes.modifCategorie(titreInitial, nouveauTitre);
+  let categorieInitiale = {
+    "titre": titreInitial,
+    "couleur" : couleurInitiale
+  }
 
-  categorieAModifier.find(".onglet__cadre_categorie").css("background-color", couleur);
+  let categorieNew = {
+    "titre" : nouveauTitre,
+    "couleur" : couleurNew
+  }
+
+  mesListes.modifCategorie(categorieInitiale, categorieNew);
+  mesListes.sauvegarde();
+
+  categorieAModifier.find(".onglet__cadre_categorie").css("background-color", couleurNew);
   categorieAModifier.find(".titre-categorie").text(nouveauTitre);
   $("#show-choix").empty();
-  categorieAModifier.attr("id", ""); 
+  categorieAModifier.attr("id", nouveauTitre); 
 }
 
-function enregistrerItem() {
-  let nouveauTitre = $(this).parent().siblings(".titre").children(".item__input_nom").val();
-  let itemAModifier = $("#target");
+function enregistrerItem(IDcategorie, titreCourant, checkbox) {
+  $(".btn__ajout_item").click(function() {
+    let nouveauTitre = $(this).parent().siblings(".titre").children(".item__input_nom").val();
+    let itemAModifier = $("#target");
+    let categorie = $("#" + IDcategorie);
+    let titreCategorie = categorie.find(".titre-categorie").text();
+    let couleurCategorie = categorie.find(".onglet__cadre_categorie").css("background-color");
 
-  itemAModifier.find(".item__titre").text(nouveauTitre);
-  $("#show-choix").empty();
-  itemAModifier.attr("id", "");
+    let itemInitial = {
+      "titre" : titreCourant,
+      "checkbox" : checkbox
+    }
+
+    let itemNew = {
+      "titre" : nouveauTitre,
+      "checkbox" : checkbox
+    }
+
+    let categorieCorrespondante = {
+      "titre" : titreCategorie,
+      "couleur" : couleurCategorie
+    }
+
+
+    mesListes.modifItem(categorieCorrespondante, itemInitial, itemNew);
+    mesListes.sauvegarde();
+
+    itemAModifier.find(".item__titre").text(nouveauTitre);
+    $("#show-choix").empty();
+    itemAModifier.attr("id", "");
+  });
 }
 
 function fermerFenetreChoix() {
@@ -234,15 +267,17 @@ function modifierCategorie() {
   $("#show-choix").append(clone);
   clone.show();
 
-  clone.find("btn-close-categorie").click(fermerFenetreChoix);  //marche pas???
+  clone.find(".btn-close-categorie").click(fermerFenetreChoix);
   $(".btn-creer-onglet").click(enregistrerCategorie);
 }
 
 function modifierItem() {
   let itemAModifier = $(this).parent().parent().parent();
   let titreCourant = $(this).parent().siblings(".item__titre").text();
+  let checkbox = itemAModifier.find(".item__checkbox").prop("checked");
   let clone = $("#creer__item_template").clone();
   let input = clone.find(".item__input_nom");
+  let IDcategorie = $(this).parents(".onglet-template").attr("id");
   
   itemAModifier.attr("id", "target");
   
@@ -253,7 +288,7 @@ function modifierItem() {
   clone.show();
 
   clone.find(".btn-close-item").click(fermerFenetreChoix);
-  $(".btn__ajout_item").click(enregistrerItem);
+  enregistrerItem(IDcategorie, titreCourant, checkbox);
 }
 
 function montrerCacherItems() {
@@ -263,19 +298,33 @@ function montrerCacherItems() {
 
 function supprimerCategorie() {
   let titre = $(this).siblings(".titre-categorie").text();
-  $(this).parent().parent().remove();
-
-
+  
   mesListes.deleteCategorie(titre);
+  mesListes.sauvegarde();
+  
+  $(this).parent().parent().remove();
 }
 
 function supprimerItem() {
   let categorieTitre = $(this).parents(".onglet-template").attr("id");
+  let categorieCouleur = $(this).parents(".onglet-template").find(".onglet__cadre_categorie").css("background-color");
   let itemTitre = $(this).parents(".item__onglet").find(".item__titre").text();
+  let itemCheckbox = $(this).parents(".item__onglet").find(".item__checkbox").prop("checked");
+
+  let item = {
+    "titre" : itemTitre,
+    "checkbox" : itemCheckbox
+  }
+
+  let categorie = {
+    "titre" : categorieTitre,
+    "couleur" : categorieCouleur
+  }
+
+  mesListes.deleteItem(categorie, item);
+  mesListes.sauvegarde();
 
   $(this).parents(".item__onglet").remove();
-
-  mesListes.deleteItem(categorieTitre, itemTitre);
 }
 
 
