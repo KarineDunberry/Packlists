@@ -16,20 +16,6 @@ class Memoire {
       this.store.clear();
   }
 
-  addItemToCategory(category, item){
-    const titre = category.titre
-
-
-    liste[titre].items.push(item)
-  }
-  /*@param {string} categorie to be created
-   */
-  createCategorie(categorie) { 
-    const couleur = categorie.couleur
-    const titre = categorie.titre
-    
-    liste[titre] = {couleur:couleur,items:[]}
-  }
   /*
    * @returns Items currently stored
    */
@@ -37,37 +23,15 @@ class Memoire {
       return this.store.getItem(this.key);
   }
 
-  /*@param {string} supprimer categorie*/
-  deleteCategorie(categorie) {
-    delete liste[categorie];  //supprime toutes les catégories si ce n'est pas la dernière
-  }
-
-  deleteItem(categorie, item) {
-    let index = liste[categorie.titre].items.findIndex(x => x === item.titre); //ne trouve pas la catégorie précédente si on crée une autre catégorie après (seulement au delete)
-  
-    liste[categorie.titre].items.splice(index, 1); 
-  }
-
-  modifCategorie(categorieInitiale, categorieNew) {
-
-    liste[categorieNew.titre] = liste[categorieInitiale.titre];
-    delete liste[categorieInitiale.titre];  
-    liste[categorieNew.titre] = {couleur:categorieNew.couleur, items:liste[categorieNew.titre].items};
-  }
-
-  modifItem(categorie, itemInitial, itemNew) {
-    this.deleteItem(categorie, itemInitial);
-    this.addItemToCategory(categorie, itemNew);
-  }
-
   sauvegarde() {
-    this.store.setItem(this.key, JSON.stringify(liste));
+    let container = document.getElementById("show-liste");
+    let content = container.innerHTML;
+    this.store.setItem(this.key, content);
   }
 }
 
 
 const mesListes = new Memoire("listes");
-mesListes.clear();
 
 
 
@@ -106,10 +70,7 @@ function choisirItem() {
   clone.find(".btn-close-item").click(fermerFenetreChoix);
   creerOngletItem(IDcategorie);
 }
-/*
-function creerListe() {
-  let listes = window.localStorage.getItem("listes");
-}*/
+
 
 function creerOngletCategorie() {
   let clone = $("#creer-onglet-template").clone();
@@ -129,14 +90,8 @@ function creerOngletCategorie() {
     $("#show-liste").append(clone);
     clone.show();
     $("#show-choix").empty();
-  
 
-    let categorie = {
-      "titre" : titre,
-      "couleur" : couleur
-    }
-
-    mesListes.createCategorie(categorie);
+    mesListes.clear();
     mesListes.sauvegarde();
   }
 
@@ -167,18 +122,7 @@ function creerOngletItem(IDcategorie) {
       clone.show();
       $("#show-choix").empty();
 
-      
-      let item = {
-        "titre" : titre,
-        "checkbox" : checkbox
-      }
-      
-      let categorieItem = {
-        "titre" : IDcategorie,
-        "couleur" : couleurCategorie
-      }
-
-      mesListes.addItemToCategory(categorieItem, item);
+      mesListes.clear();
       mesListes.sauvegarde();
     }
 
@@ -195,23 +139,13 @@ function enregistrerCategorie() {
   let titreInitial = categorieAModifier.find(".titre-categorie").text();
   console.log(titreInitial);
 
-  let categorieInitiale = {
-    "titre": titreInitial,
-    "couleur" : couleurInitiale
-  }
-
-  let categorieNew = {
-    "titre" : nouveauTitre,
-    "couleur" : couleurNew
-  }
-
-  mesListes.modifCategorie(categorieInitiale, categorieNew);
-  mesListes.sauvegarde();
-
   categorieAModifier.find(".onglet__cadre_categorie").css("background-color", couleurNew);
   categorieAModifier.find(".titre-categorie").text(nouveauTitre);
   $("#show-choix").empty();
   categorieAModifier.attr("id", nouveauTitre); 
+
+  mesListes.clear();
+  mesListes.sauvegarde();
 }
 
 function enregistrerItem(IDcategorie, titreCourant, checkbox) {
@@ -222,28 +156,12 @@ function enregistrerItem(IDcategorie, titreCourant, checkbox) {
     let titreCategorie = categorie.find(".titre-categorie").text();
     let couleurCategorie = categorie.find(".onglet__cadre_categorie").css("background-color");
 
-    let itemInitial = {
-      "titre" : titreCourant,
-      "checkbox" : checkbox
-    }
-
-    let itemNew = {
-      "titre" : nouveauTitre,
-      "checkbox" : checkbox
-    }
-
-    let categorieCorrespondante = {
-      "titre" : titreCategorie,
-      "couleur" : couleurCategorie
-    }
-
-
-    mesListes.modifItem(categorieCorrespondante, itemInitial, itemNew);
-    mesListes.sauvegarde();
-
     itemAModifier.find(".item__titre").text(nouveauTitre);
     $("#show-choix").empty();
     itemAModifier.attr("id", "");
+
+    mesListes.clear();
+    mesListes.sauvegarde();
   });
 }
 
@@ -299,10 +217,10 @@ function montrerCacherItems() {
 function supprimerCategorie() {
   let titre = $(this).siblings(".titre-categorie").text();
   
-  mesListes.deleteCategorie(titre);
-  mesListes.sauvegarde();
-  
   $(this).parent().parent().remove();
+
+  mesListes.clear();
+  mesListes.sauvegarde();
 }
 
 function supprimerItem() {
@@ -311,20 +229,10 @@ function supprimerItem() {
   let itemTitre = $(this).parents(".item__onglet").find(".item__titre").text();
   let itemCheckbox = $(this).parents(".item__onglet").find(".item__checkbox").prop("checked");
 
-  let item = {
-    "titre" : itemTitre,
-    "checkbox" : itemCheckbox
-  }
-
-  let categorie = {
-    "titre" : categorieTitre,
-    "couleur" : categorieCouleur
-  }
-
-  mesListes.deleteItem(categorie, item);
-  mesListes.sauvegarde();
-
   $(this).parents(".item__onglet").remove();
+
+  mesListes.clear();
+  mesListes.sauvegarde();
 }
 
 
@@ -341,10 +249,13 @@ $(document).ready(function() {
 	};
   fullHeight();
 
-
-
-  
-  /*Montrer les items automatiquement */
+  document.getElementById("show-liste").innerHTML = mesListes.getItems();
+  $(".item__icone_supprimer").click(supprimerItem);
+  $(".item__icone_modifier").click(modifierItem);
+  $(".categorie__icone_item").click(choisirItem);
+  $(".categorie__icone_supprimer").click(supprimerCategorie);
+  $(".categorie__icone_modifier").click(modifierCategorie);
+  $(".categorie__icone_dropdown").click(montrerCacherItems);
   
   $(".onglet__show_item").show();
 
@@ -362,8 +273,7 @@ $(document).ready(function() {
   $(".navbar .nav-item").click(function() {
     $('.navbar-toggler').addClass('collapsed');
     $('.navbar-toggler').attr('aria-expanded', false);
-    $('.navbar-collapse').removeClass('show');
-  
+    $('.navbar-collapse').removeClass('show'); 
   })
 
 
