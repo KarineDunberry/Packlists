@@ -52,6 +52,16 @@ a:hover, a:focus
   margin: 40px 0; 
 }
 
+.navbar-container .logo-text
+{
+  color: var(--color-turquoise);
+}
+
+.navbar-container .logo-text:hover
+{
+  color: var(--color-jaune);
+}
+
 
 /*sidebar*/
 
@@ -202,6 +212,11 @@ button:hover, button:focus
   display: none;
 }
 
+.btn__container_liste .btn-solid-lg
+{
+  margin: 1rem 1rem 1rem 0rem;
+}
+
 /*footer*/
 
 .footer p 
@@ -258,72 +273,72 @@ button:hover, button:focus
   outline: none;
 }
 
-#btn-radio-vert
+input[name=btn-radio-vert]
 {
   background-color: #BDFF9F;
 }
 
-#btn-radio-bleu
+input[name=btn-radio-bleu]
 {
   background-color: #A8F3FF;
 }
 
-#btn-radio-violet
+input[name=btn-radio-violet]
 {
   background-color: #A88B9C;
 }
 
-#btn-radio-rose
+input[name=btn-radio-rose]
 {
   background-color: #F2A3AF;
 }
 
-#btn-radio-jaune
+input[name=btn-radio-jaune]
 {
   background-color: #F9F871;
 }
 
-#btn-radio-orange
+input[name=btn-radio-orange]
 {
   background-color: #EB9A28;
 }
 
-#btn-radio-blanc
+input[name=btn-radio-blanc]
 {
   background-color: #fff;
 }
 
-#btn-radio-lila
+input[name=btn-radio-lila]
 {
   background-color: #f29afa;
 }
 
-#btn-radio-gris
+input[name=btn-radio-gris]
 {
   background-color: #9BAEBC;
 }
 
-#btn-radio-kaki
+input[name=btn-radio-kaki]
 {
   background-color: #A4C58B;
 }
 
-#btn-radio-turquoise
+input[name=btn-radio-turquoise]
 {
   background-color: #00C6B0;
 }
 
-#btn-radio-menthe
+input[name=btn-radio-menthe]
 {
   background-color: #7FF9C1;
 }
 
-#btn-radio-saumon
+input[name=btn-radio-saumon]
 {
   background-color: #FFB5AF;
 }
 
-#btn-radio-jaune-pale
+input[name=btn-radio-jaune-pale]
 {
   background-color: #FCFCD4;
 }
@@ -436,6 +451,12 @@ button:hover, button:focus
   text-decoration: line-through var(--color-turquoise);
 }
 
+.item__titre
+{
+  flex: 1 1 0;
+  min-width: 0;
+}
+
 @media (max-width: 768px) {
   .item__onglet
   {
@@ -454,12 +475,13 @@ button:hover, button:focus
   {
     display: none;
   }
+  
   .btn-ajout-categorie-plus
   {
     display: inline;
     font-size: 2rem;
     margin-top: 0.2rem;
-    padding: 0.9rem 0.8rem;
+    padding: 1.2rem 0.8rem !important;
   }
 }
 

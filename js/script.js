@@ -37,6 +37,19 @@ const mesListes = new Memoire("listes");
 
 
 /*FUNCTIONS*/
+
+
+function checkItem() {
+  if ($(this).prop("checked")) {
+    $(this).addClass("checked");
+  } else {
+    $(this).removeClass("checked");
+  }
+
+  mesListes.clear();
+  mesListes.sauvegarde();
+}
+
 function choisirCategorie() {
   let clone = $("#creer-categorie-template").clone();
   let input = clone.find(".input-nom");
@@ -128,6 +141,8 @@ function creerOngletItem(IDcategorie) {
 
     $(".item__icone_supprimer").click(supprimerItem);
     $(".item__icone_modifier").click(modifierItem);
+    $(".item__checkbox").change(checkItem);
+  
   })
 }
 
@@ -180,7 +195,25 @@ function modifierCategorie() {
 
   $("#show-choix").empty();
   clone.find(".btn-creer-onglet").text("Enregistrer");
+
+  /*let boutonRadio = $(".btn-radio-couleur").css("background-color", couleurCourante).attr("name"); //trouver le bouton radio qui a la bonne couleur, sort le premier??
+  */
  
+  /*let boutonRadio = $('.btn-radio-couleur').toArray().filter(f => f.style.backgroundColor ==  couleurCourante); //retourne un array vide
+  console.log(boutonRadio);
+  clone.find('input[name="' + boutonRadio + '"]').prop("checked", true);*/
+
+  /*let boutonRadio = $('input[style~="backgroundColor:' + couleurCourante + '"]');
+  console.log(boutonRadio)
+  boutonRadio.prop("checked", true)*/
+
+  /*var boutonRadio = $(".btn-radio-couleur").filter(function() {
+    return ($(this).css("background-color") == couleurCourante);
+  }); //ok retourne le bon element
+  console.log(boutonRadio)
+  boutonRadio.prop("checked", true); //ne le sélectionne pas*/
+
+  
   input.val(titreCourant);
   $("#show-choix").append(clone);
   clone.show();
@@ -256,6 +289,8 @@ $(document).ready(function() {
   $(".categorie__icone_supprimer").click(supprimerCategorie);
   $(".categorie__icone_modifier").click(modifierCategorie);
   $(".categorie__icone_dropdown").click(montrerCacherItems);
+  $(".item__checkbox").change(checkItem);
+  $(".checked").prop("checked", true);
   
   $(".onglet__show_item").show();
 
@@ -275,6 +310,19 @@ $(document).ready(function() {
     $('.navbar-toggler').attr('aria-expanded', false);
     $('.navbar-collapse').removeClass('show'); 
   })
+
+  $(".btn-supprimer-tout").click(function() {
+    mesListes.clear();
+    $("#show-liste").empty();
+  })
+  
+  /*var x = window.matchMedia("(max-width: 768px)")
+
+  if ((x.matches) && $("#sidebar").hasClass("show")) {
+    $('#content').hide();
+  }*/
+
+  
 
 
 });

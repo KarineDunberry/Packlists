@@ -31,22 +31,22 @@
             <div class="font-weight-bold">Choisir une couleur:</div>
             <div class="row">
                 <div class="col-12 d-flex justify-content-center align-items-center">
-                    <input type="radio" id="btn-radio-vert" class="btn-radio-couleur" name="btn-radio-vert">
-                    <input type="radio" id="btn-radio-bleu" class="btn-radio-couleur" name="btn-radio-vert">
-                    <input type="radio" id="btn-radio-violet" class="btn-radio-couleur" name="btn-radio-vert">
-                    <input type="radio" id="btn-radio-rose" class="btn-radio-couleur" name="btn-radio-vert">
-                    <input type="radio" id="btn-radio-jaune" class="btn-radio-couleur" name="btn-radio-vert">
-                    <input type="radio" id="btn-radio-orange" class="btn-radio-couleur" name="btn-radio-vert">
-                    <input type="radio" id="btn-radio-blanc" class="btn-radio-couleur" name="btn-radio-vert">
-                    <input type="radio" id="btn-radio-lila" class="btn-radio-couleur" name="btn-radio-vert">
+                    <input type="radio" class="btn-radio-couleur" name="btn-radio-vert">
+                    <input type="radio" class="btn-radio-couleur" name="btn-radio-bleu">
+                    <input type="radio" class="btn-radio-couleur" name="btn-radio-violet">
+                    <input type="radio" class="btn-radio-couleur" name="btn-radio-rose">
+                    <input type="radio" class="btn-radio-couleur" name="btn-radio-jaune">
+                    <input type="radio" class="btn-radio-couleur" name="btn-radio-orange">
+                    <input type="radio" class="btn-radio-couleur" name="btn-radio-blanc">
+                    <input type="radio" class="btn-radio-couleur" name="btn-radio-lila">
                 </div>
                 <div class="col-12 d-flex justify-content-center align-items-center">
-                    <input type="radio" id="btn-radio-gris" class="btn-radio-couleur" name="btn-radio-vert">
-                    <input type="radio" id="btn-radio-kaki" class="btn-radio-couleur" name="btn-radio-vert">
-                    <input type="radio" id="btn-radio-turquoise" class="btn-radio-couleur" name="btn-radio-vert">
-                    <input type="radio" id="btn-radio-menthe" class="btn-radio-couleur" name="btn-radio-vert">
-                    <input type="radio" id="btn-radio-saumon" class="btn-radio-couleur" name="btn-radio-vert">
-                    <input type="radio" id="btn-radio-jaune-pale" class="btn-radio-couleur" name="btn-radio-vert">
+                    <input type="radio" class="btn-radio-couleur" name="btn-radio-gris">
+                    <input type="radio" class="btn-radio-couleur" name="btn-radio-kaki">
+                    <input type="radio" class="btn-radio-couleur" name="btn-radio-turquoise">
+                    <input type="radio" class="btn-radio-couleur" name="btn-radio-menthe">
+                    <input type="radio" class="btn-radio-couleur" name="btn-radio-saumon">
+                    <input type="radio" class="btn-radio-couleur" name="btn-radio-jaune-pale">
                 </div>
             </div>
             <div class="d-flex justify-content-center">
@@ -86,9 +86,9 @@
 
     <!--template pour créer onglet item-->
     <div class="container item__onglet template px-5 list-group-item" id="item__creer_template">
-        <div class="row align-items-center">
+        <div class="row align-items-center item__container">
             <input type="checkbox" class="my-1 item__checkbox">
-            <div class="item__titre flex-grow-1 px-4"></div>
+            <div class="item__titre px-4"></div>
             <div>
                 <a href="#" class="item__icone item__icone_modifier pr-3"><i class="fas fa-pencil-alt"></i></a>
                 <a href="#" class="item__icone item__icone_supprimer"><i class="fas fa-times"></i></a>
@@ -143,20 +143,23 @@
         <!-- Page Content  -->
         <div id="content" class="p-4 p-md-5 animate__animated animate__fadeIn">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-
+            <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-liste">
+                <div class="container-fluid navbar-container">
                     <button type="button" id="sidebarCollapse" class="btn btn-primary">
                         <i class="fa fa-bars"></i>
                         <span class="sr-only">Toggle Menu</span>
                     </button>
-                    <a class="nav-link btn-solid-lg btn-ajout-categorie btn-ajout-categorie-text" href="#">CRÉER UNE CATÉGORIE</a>
-                    <a class="nav-link btn-solid-lg btn-ajout-categorie btn-ajout-categorie-plus" href="#">+</a>
+                    <a class="navbar-brand logo-text page-scroll" href="index.html"><i class="fas fa-suitcase-rolling iconeLogo"></i>Packlists</a>
                 </div>
             </nav>
             <div class="container liste">
                 <div class="flex-column">
                     <h2 class="mb-4 titre-voyage">Voyage</h2>
+                    <div class="row justify-content-end btn__container_liste">
+                        <a class="nav-link btn-solid-lg btn-ajout-categorie btn-ajout-categorie-text" href="#">CRÉER UNE CATÉGORIE</a>
+                        <a class="nav-link btn-solid-lg btn-ajout-categorie btn-ajout-categorie-plus" href="#">+</a><!--chercher icones-->
+                        <a class="nav-link btn-solid-lg btn-supprimer-tout" href="#">SUPPRIMER LA LISTE</a>
+                    </div>
                     <div id="show-liste"></div>
                     <div id="show-choix"></div>
                 </div>
